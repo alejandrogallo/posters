@@ -1,7 +1,7 @@
 
 # File: common-makefile/src/version.m4
-MAKEFILE_VERSION = v1.5.8-1-g6cd8de7
-MAKEFILE_DATE = 23-04-2018 16:14
+MAKEFILE_VERSION = v1.6
+MAKEFILE_DATE = 16-11-2018 14:34
 MAKEFILE_AUTHOR = Alejandro Gallo
 MAKEFILE_URL = https://github.com/alejandrogallo/latex-makefile
 MAKEFILE_LICENSE = GPLv3
@@ -224,7 +224,7 @@ PREFIX ?= $(PWD)
 .DEFAULT_GOAL := all
 
 # File: libraries.m4
-# File: src/build-dir.m4
+# File: build-dir.m4
 
 
 # Folder to build the project
@@ -479,29 +479,6 @@ $(BUILD_DOCUMENT): $(DEPENDENCIES)
 #
 force: ## Force creation of BUILD_DOCUMENT
 	$(DBG_FLAG)$(MAKE) --no-print-directory -W $(MAIN_SRC) $(BUILD_DOCUMENT)
-
-# File: build-dir.m4
-
-
-# Folder to build the project
-BUILD_DIR ?= .
-
-# Build dir flag for latex.
-# If `BUILD_DIR = .` then `BUILD_DIR_FLAG` is not defined,
-# else `BUILD_DIR = -output-directory $(BUILD_DIR)`
-BUILD_DIR_FLAG  ?= $(if \
-                   $(filter-out \
-                   .,$(strip $(BUILD_DIR))),-output-directory $(BUILD_DIR))
-
-$(BUILD_DIR):
-	$(ECHO) $(call print-cmd-name,mkdir) $@
-	$(DBG_FLAG)mkdir -p $@ $(FD_OUTPUT)
-	$(DBG_FLAG)for i in $(TEXFILES); do \
-		mkdir -p $@/$$(dirname $$i); \
-	done $(FD_OUTPUT)
-
-
-
 
 
 
@@ -1090,7 +1067,10 @@ unwatch: ## Cancel Watching
 # File: common-makefile/src/update.m4
 
 
-MAKEFILE_UPDATE_URL ?= https://raw.githubusercontent.com/alejandrogallo/latex-makefile/master/dist/Makefile
+MAKEFILE_UPDATE_URL ?= $(shell \
+curl https://api.github.com/repos/alejandrogallo/latex-makefile/releases/latest | \
+$(SED) -n 's/.*browser_download_url":.*"\(.*\)"/\1/p' \
+)
 
 
 # ===============================
@@ -1206,5 +1186,4 @@ help-%:
 
 
 
-# vim: cc=80
 
