@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage{tikz}
+%%%<
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{center}
+\setlength\PreviewBorder{00pt}%
+%%%>
+
+
+\usetikzlibrary{calc,arrows,decorations.pathmorphing,intersections}
+
+\begin{document}
+
+
+\begin{preview}
+  \begin{tikzpicture}
+
+
+    \input{main}
+
+
+    \def\aOneLabel{
+      $ 1s $
+    }
+
+    \def\aTwoLabel{
+      $ 2s $
+    }
+
+    \def\eOneLabel{
+      $ 2p $
+    }
+    \def\eTwoLabel{ }
+
+    \drawaOne
+    \drawaTwo
+    \drawpx
+    \drawpy
+    \drawpz
+
+
+
+
+  %a1
+  \draw[spinUp]   \spinaOneL ;
+  \draw[spinDown] \spinaOneR ;
+  %\draw[spinUp]   \spinaOneC ;
+  %\draw[spinDown] \spinaOneC ;
+
+  %a2
+  \draw[spinUp]   \spinaTwoL ;
+  %\draw[spinDown] \spinaTwoL ;
+  %\draw[spinUp]   \spinaTwoR ;
+  \draw[spinDown] \spinaTwoR ;
+  %\draw[spinUp]   \spinaTwoC ;
+  %\draw[spinDown] \spinaTwoC ;
+
+  %e1
+  %\draw[spinUp]   \spinpxL ;
+  %\draw[spinDown] \spinpxL ;
+  %\draw[spinUp]   \spinpxR ;
+  %\draw[spinDown] \spinpxR ;
+  \draw[spinUp]   \spinpxC ;
+  %\draw[spinDown] \spinpxC ;
+
+  %e2
+  %\draw[spinUp]   \spinpyL ;
+  %\draw[spinDown] \spinpyL ;
+  %\draw[spinUp]   \spinpyR ;
+  %\draw[spinDown] \spinpyR ;
+  %%\draw[spinUp]   \spinpyC ;
+  %\draw[spinDown] \spinpyC ;
+
+
+  \end{tikzpicture}
+\end{preview}
+
+
+\end{document}
+
+% vim:spell ft=tex spell!

@@ -1,0 +1,154 @@
+  \tikzset{
+    level/.style={black,very thick},
+    %sublevel/.style={black,densely dashed},
+    %ionization/.style={black,dashed},
+    %transition/.style={black,->,>=stealth',shorten >=1pt},
+    %radiative/.style={transition,decorate,decoration={snake,amplitude=1.5}},
+    %indirectradiative/.style={radiative,densely dashed},
+    %nonradiative/.style={transition,dashed},
+    spinUp/.style={red,line width=1.5mm,->,shorten >=4pt,>=stealth},
+    spinDown/.style={spinUp,<-},
+    annotation/.style={red,thick,<->,shorten >=4pt,shorten <=4pt,>=stealth},
+    electron/.style={black,fill},
+    allelectronlabel/.style={fill,black!90,circle,text=white},
+    band/.style={orange}
+  }
+
+  \tikzstyle{every node}=[font=\Huge]
+
+  %  Main defs {{{1  %
+  %%%%%%%%%%%%%%%%%%
+
+  \pgfmathsetmacro{\bandHeight}{2}
+  \pgfmathsetmacro{\bandWidth}{9}
+  \pgfmathsetmacro{\levelwidth}{\bandWidth/2.5}
+  \pgfmathsetmacro{\plevelwidth}{\levelwidth/2}
+  \pgfmathsetmacro{\levelSeparation}{2}
+  \pgfmathsetmacro{\arrowHeight}{1.3}
+
+
+  %  Level A2 {{{1  %
+  %%%%%%%%%%%%%%%%%%%
+
+
+  \coordinate (Origin) at (0, 0);
+  \coordinate (a1) at
+    ($(Origin)+(\bandWidth/2-\levelwidth/2 ,0.5*\bandHeight )$);
+  \coordinate (a2) at
+    ($(Origin)+(\bandWidth/2-\levelwidth/2 ,\bandHeight+1*\levelSeparation )$);
+  \coordinate (px) at
+    ($(Origin)+(\bandWidth/3-3*\plevelwidth/3 ,\bandHeight+2*\levelSeparation )$);
+  \coordinate (py) at
+    ($(px)+(\bandWidth/3-1*\plevelwidth/3 ,0)$);
+  \coordinate (pz) at
+    ($(py)+(\bandWidth/3-1*\plevelwidth/3 ,0)$);
+
+
+  \def\aOneLabel{ $ a_1 $ }
+  \def\drawaOne{
+    \draw[level] (a1)
+      node[left=1pt] {\aOneLabel}
+      -- +(\levelwidth,0);
+  }
+
+  \def\aTwoLabel{ $ a_2 $ }
+  \def\drawaTwo{
+    \draw[level] (a2)
+      node[left=1pt] {\aTwoLabel}
+      -- +(\levelwidth,0);
+  }
+
+  \def\eOneLabel{ $ e_{x} $ }
+  \def\drawpx{
+    \draw[level] (px)
+      node[left=1pt] {\eOneLabel}
+      -- +(\plevelwidth,0);
+  }
+
+  \def\eTwoLabel{ $ e_{y} $ }
+  \def\drawpy{
+    \draw[level] (py) -- +(\plevelwidth,0)
+    node[right=1pt] {\eTwoLabel};
+  }
+
+  \def\drawpz{
+    \draw[level] (pz) -- +(\plevelwidth,0)
+    node[right=1pt] {\eTwoLabel};
+  }
+
+
+
+  %  All spins {{{1  %
+  %%%%%%%%%%%%%%%%%%%%
+
+  % a1
+  \def\spinaOneL{
+    ( $ (a1) + (      \levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinaOneR{
+    ( $ (a1) + (      2*\levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinaOneC{
+    ( $ (a1) + (      0.5*\levelwidth  , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  % a2
+  \def\spinaTwoL{
+    ( $ (a2) + (      \levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinaTwoR{
+    ( $ (a2) + (      2*\levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinaTwoC{
+    ( $ (a2) + (      0.5*\levelwidth  , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+
+  % px
+  \def\spinpxL{
+    ( $ (px) + (      \plevelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinpxR{
+    ( $ (px) + (      2*\plevelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinpxC{
+    ( $ (px) + (      0.5*\plevelwidth  , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+
+  % py
+  \def\spinpyL{
+    ( $ (py) + (      \plevelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinpyR{
+    ( $ (py) + (      2*\plevelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinpyC{
+    ( $ (py) + (      0.5*\plevelwidth  , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+
+
+  % pz
+  \def\spinpzL{
+    ( $ (pz) + (      \plevelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinpzR{
+    ( $ (pz) + (      2*\plevelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinpzC{
+    ( $ (pz) + (      0.5*\plevelwidth  , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+
+% vim:spell ft=tex spell!

@@ -1,0 +1,174 @@
+  \tikzset{
+    level/.style={black,very thick},
+    %sublevel/.style={black,densely dashed},
+    %ionization/.style={black,dashed},
+    %transition/.style={black,->,>=stealth',shorten >=1pt},
+    %radiative/.style={transition,decorate,decoration={snake,amplitude=1.5}},
+    %indirectradiative/.style={radiative,densely dashed},
+    %nonradiative/.style={transition,dashed},
+    spinUp/.style={red,line width=1.5mm,->,shorten >=4pt,>=stealth},
+    spinDown/.style={spinUp,<-},
+    annotation/.style={red,thick,<->,shorten >=4pt,shorten <=4pt,>=stealth},
+    electron/.style={black,fill},
+    allelectronlabel/.style={fill,black!90,circle,text=white},
+    band/.style={orange}
+  }
+
+  \tikzstyle{every node}=[font=\Huge]
+
+  %  Main defs {{{1  %
+  %%%%%%%%%%%%%%%%%%
+
+  \pgfmathsetmacro{\bandGap}{5.5}
+  \pgfmathsetmacro{\bandHeight}{2}
+  \pgfmathsetmacro{\bandWidth}{9}
+  \pgfmathsetmacro{\levelwidth}{\bandWidth/2.5}
+  \pgfmathsetmacro{\levelSeparation}{2}
+  \pgfmathsetmacro{\arrowHeight}{1.3}
+
+  
+  %  Level A2 {{{1  %
+  %%%%%%%%%%%%%%%%%%%
+  
+
+  \coordinate (Origin) at (0, 0);
+  \coordinate (a1) at
+    ($(Origin)+(\bandWidth/2-\levelwidth/2 ,0.5*\bandHeight )$);
+  \coordinate (a2) at
+    ($(Origin)+(\bandWidth/2-\levelwidth/2 ,\bandHeight+1*\levelSeparation )$);
+  \coordinate (e1) at
+    ($(Origin)+(\bandWidth/3-2*\levelwidth/3 ,\bandHeight+2*\levelSeparation )$);
+  \coordinate (e2) at
+    ($(e1)+(\bandWidth/3+1*\levelwidth/3 ,0)$);
+
+  \def\drawVB{
+    \fill [band] (Origin)
+      rectangle +(\bandWidth,\bandHeight);
+  }
+  \def\drawLB{
+    \fill [band] ($(Origin)+(0,\bandHeight+\bandGap)$)
+      rectangle +(\bandWidth,\bandHeight)
+      node[black,pos=.5] { Conduction Band };
+  }
+
+  \def\aOneLabel{ $ a_1 $ }
+  \def\drawaOne{
+    \draw[level] (a1)
+      node[left=1pt] {\aOneLabel}
+      -- +(\levelwidth,0);
+  }
+
+  \def\aTwoLabel{ $ a_2 $ }
+  \def\drawaTwo{
+    \draw[level] (a2)
+      node[left=1pt] {\aTwoLabel}
+      -- +(\levelwidth,0);
+  }
+
+  \def\eOneLabel{ $ e_{x} $ }
+  \def\draweOne{
+    \draw[level] (e1) 
+      node[left=1pt] {\eOneLabel}
+      -- +(\levelwidth,0);
+  }
+
+  \def\eTwoLabel{ $ e_{y} $ }
+  \def\draweTwo{
+    \draw[level] (e2) -- +(\levelwidth,0)
+    node[right=1pt] {\eTwoLabel};
+  }
+
+  %  All electron label {{{1  %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \def\allState{{\huge $ ^3A_{2} $}}
+  \def\drawAllElectronLabel{
+    \node[allelectronlabel] at
+    ($0.5*(a2)+0.5*(a1)+(0.5*\levelwidth,0)$) {\allState};
+  }
+
+  %  All spins {{{1  %
+  %%%%%%%%%%%%%%%%%%%%
+
+  % a1
+  \def\spinaOneL{
+    ( $ (a1) + (      \levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinaOneR{
+    ( $ (a1) + (      2*\levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinaOneC{
+    ( $ (a1) + (      0.5*\levelwidth  , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  % a2
+  \def\spinaTwoL{
+    ( $ (a2) + (      \levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinaTwoR{
+    ( $ (a2) + (      2*\levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spinaTwoC{
+    ( $ (a2) + (      0.5*\levelwidth  , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+
+  % e1
+  \def\spineOneL{
+    ( $ (e1) + (      \levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spineOneR{
+    ( $ (e1) + (      2*\levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spineOneC{
+    ( $ (e1) + (      0.5*\levelwidth  , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+
+  % e2
+  \def\spineTwoL{
+    ( $ (e2) + (      \levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spineTwoR{
+    ( $ (e2) + (      2*\levelwidth /3 , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+  \def\spineTwoC{
+    ( $ (e2) + (      0.5*\levelwidth  , -0.5*\arrowHeight ) $ )
+    -- + ( 0   , \arrowHeight )
+  }
+
+
+  %\draw[spinUp]
+    %( $ (a1) + (      \levelwidth /3 , -0.5*\arrowHeight ) $ )
+    %-- + ( 0   , \arrowHeight ) ;
+
+  %\draw[spinDown]
+    %( $ (a1) + ( 2*   \levelwidth /3 , -0.5*\arrowHeight ) $ )
+    %-- +   ( 0 , \arrowHeight ) ;
+
+  %\draw[spinUp]
+    %( $ (a2) + (      \levelwidth /3 , -0.5*\arrowHeight ) $ )
+    %-- + ( 0   , \arrowHeight ) ;
+
+  %\draw[spinDown]
+    %( $ (a2) + ( 2*   \levelwidth /3 , -0.5*\arrowHeight ) $ )
+    %-- +   ( 0 , \arrowHeight ) ;
+
+  %\draw[spinUp]
+    %( $ (e1) + ( 0.5* \levelwidth    , -0.5*\arrowHeight ) $ )
+    %-- +   ( 0 , \arrowHeight ) ;
+
+  %\draw[spinUp]
+    %( $ (e2) + ( 0.5* \levelwidth    , -0.5*\arrowHeight ) $ )
+    %-- +   ( 0 , \arrowHeight ) ;
+
+
+% vim:spell ft=tex spell!
