@@ -1,2 +1,2 @@
 #DEPENDENCIES = baposter.cls
-BUILD_DIR = build
+BUILD_DIR = .build
