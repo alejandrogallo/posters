@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage{tikz}
+%%%<
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{center}
+\setlength\PreviewBorder{00pt}%
+%%%>
+
+
+\usetikzlibrary{calc,arrows,decorations.pathmorphing,intersections}
+
+\begin{document}
+
+
+\begin{preview}
+  \begin{tikzpicture}
+
+
+    \input{main}
+
+    \drawLB
+    \drawVB
+
+    \def\allState{{\huge $ ^3E $}}
+
+    \drawaOne
+    \drawaTwo
+    \draweOne
+    \draweTwo
+
+    \drawAllElectronLabel
+
+
+
+  %a1
+  \draw[spinUp]   \spinaOneL ;
+  %\draw[spinDown] \spinaOneL ;
+  %\draw[spinUp]   \spinaOneR ;
+  \draw[spinDown] \spinaOneR ;
+  %\draw[spinUp]   \spinaOneC ;
+  %\draw[spinDown] \spinaOneC ;
+
+  %a2
+  %\draw[spinUp]   \spinaTwoL ;
+  %\draw[spinDown] \spinaTwoL ;
+  %\draw[spinUp]   \spinaTwoR ;
+  %\draw[spinDown] \spinaTwoR ;
+  \draw[spinUp]   \spinaTwoC ;
+  %\draw[spinDown] \spinaTwoC ;
+
+  %e1
+  \draw[spinUp]   \spineOneL ;
+  %\draw[spinDown] \spineOneL ;
+  %\draw[spinUp]   \spineOneR ;
+  \draw[spinDown] \spineOneR ;
+  %\draw[spinUp]   \spineOneC ;
+  %\draw[spinDown] \spineOneC ;
+
+  %e2
+  %\draw[spinUp]   \spineTwoL ;
+  %\draw[spinDown] \spineTwoL ;
+  %\draw[spinUp]   \spineTwoR ;
+  %\draw[spinDown] \spineTwoR ;
+  \draw[spinUp]   \spineTwoC ;
+  %\draw[spinDown] \spineTwoC ;
+
+
+  \end{tikzpicture}
+\end{preview}
+
+
+\end{document}
+
+% vim:spell ft=tex spell!

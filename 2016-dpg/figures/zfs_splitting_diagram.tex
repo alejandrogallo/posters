@@ -1,0 +1,95 @@
+\documentclass[]{article}
+
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage[active,tightpage]{preview}
+\usetikzlibrary{shapes,calc}
+\usetikzlibrary{shapes.callouts}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{arrows}
+
+\usepackage{sansmath}
+
+
+
+\begin{document}
+  \begin{preview}
+  \begin{tikzpicture}[ scale=0.5, level/.style={very thick} ]
+
+    \pgfmathsetmacro{\headerheight}{11}
+    \tikzset{
+      font=\sffamily,
+      photon/.style={<->,decorate, decoration={snake}, draw=red,
+      line width=0.4mm,>=triangle 60},
+      rotdis/.style={<->,decorate, draw=red,thick},
+      ghost/.style={gray,dashed,thin}
+    }
+
+    \pgfmathsetmacro{\degensep}{.1}
+
+    %  Main level {{{1  %
+    %%%%%%%%%%%%%%%%%%%%%
+    \coordinate (A2) at (3, 4);
+    \coordinate (A2END) at ($(A2)+(2,0)$);
+    \draw[level] (A2)
+     node[left]{$^{3}A_{2}$}
+     -- (A2END);
+    %main level ghost
+    \draw[gray,ghost](A2END)--+(12,0);
+    \draw[level,ghost] (A2END) -- ( 6, 7.5);
+    \draw[level,ghost] (A2END) -- ( 6, 0);
+
+
+    %  Spin spin {{{1  %
+    %%%%%%%%%%%%%%%%%%%%
+
+    %SPIN-SPIN LABEL
+    \node[fill,gray!00,font=\large,text=black] at
+      (10.5,\headerheight-1)
+      {
+        ($ \hat{ \mathbf{S}}^{t} \mathsf{D} \hat{ \mathbf{S}} $)
+      };
+
+% Draw the energy levels.
+    \draw[level] ( 6, 7.5) -- ( 10, 7.5)
+      node[midway,above]{ $ x,y $ };
+    \draw[level] ( 6, 0) -- ( 10, 0)
+      node[midway,below]{ $ z\ (m_{s}=0) $ };
+
+
+    %\draw[rotdis] (7,7.5) -- (7,6)
+      %node[right=1em,midway]{$E$};
+    %\draw[rotdis] (7,6) -- (7,0)
+      %node[right=1em,midway]{$\propto D$};
+    \draw[rotdis] (7,7.5) -- (7,0)
+      node[right=0em,midway]{$\propto D$};
+
+
+    \draw[level,ghost] ( 10, 0) -- ( 13, 0);
+
+    \draw[level,ghost] ( 10, 7.5) -- ( 12, 7.5);
+    \draw[level,ghost] ( 12, 7.5)--( 13, 8.2) ;
+    \draw[level,ghost] ( 13, 6.8)--( 12, 7.5) ;
+
+    %  Zeeman {{{1  %
+    %%%%%%%%%%%%%%%%%
+
+    %\draw[level,blue] ( 13, 7.5) -- ( 17, 7.5)node[right]{\ 0};
+    \draw[level] ( 13, 8.2) -- ( 17, 8.2)node[right]{$ x $ };
+    \draw[level] ( 13, 6.8) -- ( 17, 6.8)node[right]{$ y $ };
+    \draw[level] ( 13, 0) -- ( 17, 0)
+      node[midway,below]{ $ z\ (m_{s}=0) $ };
+
+    \draw[rotdis] ( 13.5, 8.2) -- ( 13.5, 6.8) 
+      node[right=0em,midway]{$\propto E$};
+
+    %\draw[](10,\headerheight)node[font=\large]{\textbf{Spin-Spin/Zeeman/strain}};
+
+
+  \end{tikzpicture}
+  \end{preview}
+\end{document}
+
+
+
+% vim:spell ft=tex nospell fdm=marker:
