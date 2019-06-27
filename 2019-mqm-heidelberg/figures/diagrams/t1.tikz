@@ -1,0 +1,18 @@
+\def\angle{15}
+\def\tLength{0.25}
+\def\tHeight{0.5}
+% define main points
+\draw[draw=none]
+  (0,0)
+    coordinate (l)
+  -- ++ (\tLength,0)
+    coordinate (r)
+    coordinate[pos=0.5] (center)
+  (center) ++ (90 - \angle:\tHeight)
+    coordinate (topl)
+  (center) ++ (90 + \angle:\tHeight)
+    coordinate (topr)
+;
+\draw[] (l) -- (r);
+\draw[->-] (center) -- (topl);
+\draw[-<-] (center) -- (topr);

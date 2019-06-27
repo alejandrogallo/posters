@@ -1,0 +1,41 @@
+% vim:ft=tex:nospell
+
+\def\angle{12}
+\def\tLength{0.3}
+\def\tHeight{0.8}
+\def\vLength{\tLength}
+% define coordinates
+\draw[draw=none]
+  % t basis
+  (0,0)
+    coordinate (t2bottoml)
+  ++ (\tLength,0)
+    coordinate (t2bottomr)
+  % left
+  (t2bottoml) ++ (90 + \angle:\tHeight)
+    coordinate (t2tophole)
+  (t2bottoml) ++ (90 - \angle:\tHeight)
+    coordinate (t2topparticle)
+  % right
+  (t2bottomr) ++ (0, 0.5*\tHeight)
+    coordinate (vl)
+  (vl) ++ (\vLength,0)
+    coordinate (vr)
+  (vr) ++ (90 + \angle:0.5*\tHeight)
+    coordinate (vrtopparticle)
+  (vr) ++ (90 - \angle:0.5*\tHeight)
+    coordinate (vrtophole)
+;
+
+\draw[wiggly] (vl) -- (vr);
+
+\draw (t2bottomr) -- (t2bottoml);
+
+\draw[-<-] (t2bottoml) -- (t2tophole);
+\draw[-<-] (vr) -- (vrtophole);
+\draw[-<-] (t2bottomr) to[bend left] (vl);
+\draw[-<-] (t2bottomr) to[bend left] (vl);
+
+\draw[->-] (t2bottoml) -- (t2topparticle);
+\draw[->-] (vr) -- (vrtopparticle);
+\draw[->-] (t2bottomr) to[bend right] (vl);

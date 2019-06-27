@@ -1,0 +1,35 @@
+% vim:ft=tex:nospell
+
+\def\angle{10}
+\def\tLength{0.6}
+\def\tHeight{0.8}
+% define coordinates
+%\draw[help lines, step=0.1cm] (0,0) grid (\tLength, \tHeight);
+\draw[draw=none]
+  (0,0)
+    coordinate (t2bottoml)
+  ++ (\tLength,0)
+    coordinate (t2bottomr)
+  (t2bottoml) ++ (90 + \angle:\tHeight)
+    coordinate (t2topholel)
+  (t2bottomr) ++ (90 - \angle:\tHeight)
+    coordinate (t2topholer)
+  (t2bottoml) -- ++ (90 - \angle:\tHeight)
+    coordinate[pos=0.5] (vl)
+    coordinate (vtopl)
+  (t2bottomr) -- ++ (90 + \angle:\tHeight) node[]{}
+    coordinate (vtopr)
+    coordinate[pos=0.5] (vr)
+;
+
+\draw[wiggly] (vl) -- (vr);
+
+\draw (t2bottomr) -- (t2bottoml);
+
+\draw[->-] (t2bottomr) -- (vr);
+\draw[->-] (t2bottoml) -- (vl);
+\draw[->-] (vr) -- (vtopr);
+\draw[->-] (vl) -- (vtopl);
+
+\draw[-<-] (t2bottomr) -- (t2topholer);
+\draw[-<-] (t2bottoml) -- (t2topholel);

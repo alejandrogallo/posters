@@ -1,0 +1,65 @@
+% 2019-06-16
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{goldstone}
+\RequirePackage{tikz,kvoptions,etoolbox}
+\SetupKeyvalOptions{family=size,prefix=size@}
+\DeclareStringOption[0.85]{scale}[0.85]
+\ProcessKeyvalOptions*
+
+\usetikzlibrary{fit}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.spaced}
+\usetikzlibrary{decorations.shapes}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+\tikzset{
+  ->-/.style={
+    decoration={
+      markings,
+      mark=at position 0.5 with {
+        %\arrow[]{#1};
+        \def\arrowWidth{0.25em}
+        \def\arrowHeight{0.45em}
+        \draw[black, fill, rounded corners=0.001pt]
+          (-\arrowHeight,-\arrowWidth) --
+          (-\arrowHeight,\arrowWidth) --
+          (\arrowHeight,0) --
+          cycle
+        ;
+      }
+    },
+    postaction={decorate}
+  },
+  -<-/.style={
+    rounded corners,
+    decoration={
+      markings,
+      mark=at position 0.5 with {
+        \def\arrowWidth{0.25em}
+        \def\arrowHeight{0.45em}
+        \draw[black, fill, rounded corners=0.001pt,rotate=180]
+          (-\arrowHeight,-\arrowWidth) --
+          (-\arrowHeight,\arrowWidth) --
+          (\arrowHeight,0) --
+          cycle
+        ;
+      }
+    },
+    postaction={decorate}
+  },
+  %->-/.default={spaced latex},
+  %-<-/.default={spaced latex reversed},
+  wiggly/.style={
+    decoration={snake, segment length=0.5cm, amplitude=3pt},
+    decorate
+  },
+}
+
+\endinput
