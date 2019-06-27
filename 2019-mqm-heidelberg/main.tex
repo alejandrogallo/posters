@@ -3,18 +3,32 @@
 \input{style.tex}
 
 \usepackage[english]{babel}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsthm,amssymb,latexsym}
 \usepackage{multirow}
 \usepackage[orientation=portrait,size=a0,scale=1.4]{beamerposter}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 
+\usepackage[
+  hyperref=false,
+  url=false,
+  abbreviate=true,
+  maxnames=1,
+  date=year,
+  style=nature,
+  backend=bibtex,
+  doi=false
+]{biblatex}
+\AtEveryBibitem{\clearfield{note}}
+\AtEveryBibitem{\clearfield{title}}
+\bibliography{main.bib}
+
 
 \title{
   Equation of motion coupled cluster theory using periodic boundary conditions
 }
-\author{\underline{Alejandro Gallo} and Andreas Gr\"uneis}
+\author{\underline{Alejandro Gallo}, Felix Hummel and Andreas Gr\"uneis}
 \def\correspondingAuthorEmail{alejandro.gallo@tuwien.ac.at}
 \def\website{http://cqc.tuwien.ac.at}
 \institute[]{
@@ -23,6 +37,7 @@
 
 
 \begin{document}
+\nocite{*}
 \begin{frame}[fragile]{}
 
   \begin{block}{\large Abstract}
@@ -60,9 +75,7 @@
       \end{block}
 
       \begin{block}{\large References \& Acknowledgements}
-        \input{references.tex}
-        \bibliography{main}
-        \bibliographystyle{plain}
+        \printbibliography
       \end{block}
 
     \end{column}
