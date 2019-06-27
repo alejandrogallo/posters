@@ -3,10 +3,24 @@
   Exponential \textit{Ansatz} for dynamic correlation
   %
   \[
-    \left | \mathrm{CC} \right \rangle  = e^{\hat{T}} \left | 0 \right \rangle
+    \left | \mathrm{CC} \right \rangle  =
+    e^{\hat{T}} \left | 0 \right \rangle
+    =
+    1 +
+    \tikz[baseline]\node{\includegraphics[scale=2]{figures/diagrams/t1.pdf}};
+    +
+    \tikz[baseline]\node{\includegraphics[scale=2]{figures/diagrams/t2.pdf}};
+    +
+    \tikz[baseline]\node{\includegraphics[scale=2]{figures/diagrams/t1.pdf}};
+    \tikz[baseline]\node{\includegraphics[scale=2]{figures/diagrams/t1.pdf}};
+    +
+    \tikz[baseline]\node{\includegraphics[scale=2]{figures/diagrams/t1.pdf}};
+    \tikz[baseline]\node{\includegraphics[scale=2]{figures/diagrams/t2.pdf}};
+    +
+    \cdots
   \]
   %
-where $ \left | 0 \right \rangle  $ is the one-particle vacumm.
+where $ \left | 0 \right \rangle  $ is the vacumm state.
 %
 \[
   \hat{T} =
@@ -21,6 +35,12 @@ where $ \left | 0 \right \rangle  $ is the one-particle vacumm.
     \hat{a}_{j}           \hat{a}_{i}
   }_{\mathrm{CCSD}}
   + \cdots
+  =
+  \tikz[baseline]\node{\includegraphics[scale=2]{figures/diagrams/t1.pdf}};
+  +
+  \tikz[baseline]\node{\includegraphics[scale=2]{figures/diagrams/t2.pdf}};
+  +
+  \cdots
 \]
 %
 \item
