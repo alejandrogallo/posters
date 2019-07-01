@@ -67,28 +67,46 @@
       \begin{block}{\large Coupled-Cluster Ansatz}
         \input{equation-of-motion-cc.tex}
       \end{block}
+
+      \begin{block}{\large References}
+        \printbibliography
+      \end{block}
+
     \end{column}
 
     % -------------------------------------------------------------
 
     \begin{column}{.49\linewidth}
-
       \begin{block}{\large Color centers in alkali halides}
+      \begin{center}
+
+        \begin{columns}
+          \begin{column}{0.7\textwidth}
+            \begin{tikzpicture}
+              \node {
+              \includegraphics[draft, width=\textwidth, clip, trim=200 0 200 0]
+                {figures/fcenters/orbitals/PARCHG_0105_ALLK.pdf}
+              };
+              \node {$s$ like orbital};
+              \node at (9,-8.7) {Cl};
+              \node at (5.4,-7.1) {Li};
+            \end{tikzpicture}
+          \end{column}
+          \begin{column}{0.3\textwidth}
+            \begin{itemize}
+              \item
+                $ s \mapsto p $ transition with a long history
+                \cite{pohl1925}.
+            \end{itemize}
+          \end{column}
+        \end{columns}
         \includegraphics[width=0.8\textwidth]{figures/fcenters/plot.pdf}
+
+      \end{center}
       \end{block}
 
       \begin{block}{\large Molecule benchmark example: Formaldehyde (CH$_2$O)}
-          %\begin{columns}[t]
-            %\begin{column}{.2\linewidth}
-              %\begin{itemize}
-                %\item
-                  %Calculation with pseudized-gaussians \cite{10.10631.4961301}
-              %\end{itemize}
-            %\end{column}
-            %\begin{column}{.8\linewidth}
-            %\end{column}
-          %\end{columns}
-          \includegraphics[width=\textwidth]{figures/formaldehyde/plot.pdf}
+          \includegraphics[width=0.9\textwidth]{figures/formaldehyde/plot.pdf}
           \begin{itemize}
             \item
               Calculation with pseudized-gaussians
@@ -98,12 +116,12 @@
           \end{itemize}
       \end{block}
 
-      \begin{block}{\large References \& Acknowledgements}
-        \printbibliography
+      \begin{block}{\large Acknowledgements}
         Gratefully acknowledge funding from
         \textit{ERC starting grant}
         \tikz[baseline]\node{\includegraphics[width=4em]{figures/erc.png}};.
       \end{block}
+
 
     \end{column}
 
