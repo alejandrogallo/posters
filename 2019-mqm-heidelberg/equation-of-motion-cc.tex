@@ -1,17 +1,27 @@
-In one sentence:
-\begin{center}
-  \textit{
-  Perform \emph{CI} on the similarity-transformed Hamiltonian $\bar{\mathsf{H}}$
-  instead of $\hat H$.
-}
-\end{center}
 \begin{itemize}
   \item
-    Linear \textit{Ansatz} on top of ground state coupled-cluster.
+    In one sentence:
+    \begin{center}
+      \textit{
+      Perform \emph{CI} on the similarity-transformed Hamiltonian $\bar{\mathsf{H}}$
+      instead of $H$.
+    }
+    \end{center}
+  \item
+    One striking consequence: for EOM-CCSD up to 6 body hamiltonian,
+  $$
+    \bra{^{abcdef}_{ijklmn}} \bar{\mathsf{H}} \ket{0}
+    =
+    \begin{tikzpicture}[baseline, line width=2, scale=5]
+      \input{figures/diagrams/6body.tex}
+    \end{tikzpicture}
+  $$
+
+  \item
+    Linear (CI) \textit{Ansatz} on top of ground state coupled-cluster.
     \begin{align*}
-      \ket{r_i} &= \hat{R} ^{(i)} e^{\hat{T}} \ket{0}
-      \\
-      \bra{l_i} &= \bra{0} e^{-\hat{T}} \hat{L}^{(i)}
+      \ket{r_i} = \hat{R} ^{(i)} e^{\hat{T}} \ket{0}, \qquad
+      \bra{l_i} = \bra{0} e^{-\hat{T}} \hat{L}^{(i)}
     \end{align*}
     where
       \begin{align*}
@@ -47,34 +57,40 @@ In one sentence:
 
   \item
     Left and right eigenvectors $ \Rightarrow $ accessibility to calculate
-    properties.
+    properties
+
+  \item
+    Contained size-extensivity error
+
+  \item
+    Davidson-based diagonalization procedure
 
 \end{itemize}
 
-\textbf{Davidson-based diagonalization procedure}
-\begin{itemize}
-
-  \item
-    Get initial \textit{right} basis
-    $ B = \left \{ b_{1}, \ldots, b_{k} \right \} $
-    to obtain $ k $ excited states
-
-  \item
-    Compute reduced matrix and diagonalize
-    $
-      h_{ij} =
-      \bra{b_{i}} \bar{\mathsf{H}} \ket{b_{j}}
-    $
-
-  \item
-    Get $ k $ lowest eigenvalues and eigenvectors and compute corrections
-    for them
-
-  \item
-    If the corrections are significant, add them to the basis
-
-  \item
-    Basis refreshment: at some iterations, the basis gets collapsed
-    to have only $ k $ vectors
-
-\end{itemize}
+%\textbf{Davidson-based diagonalization procedure}
+%\begin{itemize}
+%
+  %\item
+    %Get initial \textit{right} basis
+    %$ B = \left \{ b_{1}, \ldots, b_{k} \right \} $
+    %to obtain $ k $ excited states
+%
+  %\item
+    %Compute reduced matrix and diagonalize
+    %$
+      %h_{ij} =
+      %\bra{b_{i}} \bar{\mathsf{H}} \ket{b_{j}}
+    %$
+%
+  %\item
+    %Get $ k $ lowest eigenvalues and eigenvectors and compute corrections
+    %for them
+%
+  %\item
+    %If the corrections are significant, add them to the basis
+%
+  %\item
+    %Basis refreshment: at some iterations, the basis gets collapsed
+    %to have only $ k $ vectors
+%
+%\end{itemize}

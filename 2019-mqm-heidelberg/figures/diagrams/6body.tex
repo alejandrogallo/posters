@@ -1,0 +1,66 @@
+\def\angle{15}
+\def\tLength{0.5}
+\def\tHeight{0.5}
+\newcommand{\tamplitude}[1]{
+  % define points
+  \draw[draw=none]
+    (0,0)
+      coordinate (#1bottoml)
+    ++ (\tLength,0)
+      coordinate (#1bottomr)
+    (#1bottoml) ++ (90 - \angle:\tHeight)
+      coordinate (#1topparticlel)
+    (#1bottoml) ++ (90 + \angle:\tHeight)
+      coordinate (#1topholel)
+    (#1bottomr) ++ (90 - \angle:\tHeight)
+      coordinate (#1topparticler)
+    (#1bottomr) ++ (90 + \angle:\tHeight)
+      coordinate (#1topholer)
+  ;
+
+  \draw[] (#1bottoml) -- (#1bottomr);
+
+}
+
+\draw[dashed]
+  (0,0) coordinate (vl) --++ (0.7, 0) coordinate (vr)
+  node [pos=0.5, rectangle, scale=0.9, above] {
+    $V^{\ ij}_{ab}$
+  }
+;
+
+% t amplitude left
+\begin{scope}[yshift=-25, xshift=-15]
+  \tamplitude{leftamplitude}
+\end{scope}
+\draw[-<-] (leftamplitudebottomr) -- (vl);
+\draw[->-] (leftamplitudebottoml) -- (leftamplitudetopparticlel);
+\draw[-<-] (leftamplitudebottoml) -- (leftamplitudetopholel);
+\draw[->-] (leftamplitudebottomr) -- (leftamplitudetopholer);
+
+% t amplitude leftleft
+\begin{scope}[yshift=-15, xshift=-45]
+  \tamplitude{leftleftamplitude}
+\end{scope}
+\draw[->-] (leftleftamplitudebottomr) -- (vl);
+\draw[->-] (leftleftamplitudebottoml) -- (leftleftamplitudetopparticlel);
+\draw[-<-] (leftleftamplitudebottoml) -- (leftleftamplitudetopholel);
+\draw[-<-] (leftleftamplitudebottomr) -- (leftleftamplitudetopholer);
+
+% t amplitude right
+\begin{scope}[yshift=-25, xshift=35, xscale=-1]
+  \tamplitude{rightamplitude}
+\end{scope}
+\draw[-<-] (rightamplitudebottomr) -- (vr);
+\draw[->-] (rightamplitudebottoml) -- (rightamplitudetopparticlel);
+\draw[-<-] (rightamplitudebottoml) -- (rightamplitudetopholel);
+\draw[->-] (rightamplitudebottomr) -- (rightamplitudetopholer);
+
+% t amplitude rightright
+\begin{scope}[yshift=-15, xshift=65, xscale=-1]
+  \tamplitude{rightrightamplitude}
+\end{scope}
+\draw[->-] (rightrightamplitudebottomr) -- (vr);
+\draw[->-] (rightrightamplitudebottoml) -- (rightrightamplitudetopparticlel);
+\draw[-<-] (rightrightamplitudebottoml) -- (rightrightamplitudetopholel);
+\draw[-<-] (rightrightamplitudebottomr) -- (rightrightamplitudetopholer);
