@@ -15,7 +15,7 @@
   plot: True
   data:
     KBr: 3.50515
-    KCl: 2.94652
+    #KCl: 2.94652
     KF: 4.41996
     LiCl: 4.93788
     LiF: 7.02796
@@ -25,8 +25,8 @@
   plot: True
   data:
     KBr: 2.6254
-    KCl: 2.1904
-    KF: 3.06385
+    #KCl: 2.1904
+    #KF: 3.06385
     LiBr: 3.62722
     LiCl: 4.15446
     LiF: 5.80358
