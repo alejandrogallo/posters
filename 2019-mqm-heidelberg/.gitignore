@@ -1,4 +1,5 @@
 *.pdf
+.makefile-dbg
 .deps
 .build
 
