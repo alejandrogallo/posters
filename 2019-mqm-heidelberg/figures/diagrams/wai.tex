@@ -1,0 +1,18 @@
+\def\angle{15}
+\def\waiLength{0.25}
+\def\waiHeight{0.35}
+% define main points
+\draw[draw=none]
+  (0,0)
+    coordinate (l)
+  -- ++ (\waiLength,0)
+    coordinate (r)
+    coordinate[pos=1] (center)
+  (center) ++ (90 - \angle:\waiHeight)
+    coordinate (topl)
+  (center) ++ (90 + \angle:\waiHeight)
+    coordinate (topr)
+;
+\draw[wiggly] (l) -- (r);
+\draw[->-] (center) -- (topl);
+\draw[-<-] (center) -- (topr);

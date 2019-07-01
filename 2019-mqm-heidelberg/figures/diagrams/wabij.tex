@@ -1,0 +1,28 @@
+% vim:ft=tex
+
+\def\angle{15}
+\def\wabijLength{0.4}
+\def\wabijHeight{0.35}
+% define points
+\draw[draw=none]
+  (0,0)
+    coordinate (t2bottoml)
+  ++ (\wabijLength,0)
+    coordinate (t2bottomr)
+  (t2bottoml) ++ (90 - \angle:\wabijHeight)
+    coordinate (t2topparticlel)
+  (t2bottoml) ++ (90 + \angle:\wabijHeight)
+    coordinate (t2topholel)
+  (t2bottomr) ++ (90 - \angle:\wabijHeight)
+    coordinate (t2topparticler)
+  (t2bottomr) ++ (90 + \angle:\wabijHeight)
+    coordinate (t2topholer)
+;
+
+\draw[wiggly] (t2bottoml) -- (t2bottomr);
+
+\draw[->-] (t2bottoml) -- (t2topparticlel);
+\draw[->-] (t2bottomr) -- (t2topparticler);
+
+\draw[-<-] (t2bottoml) -- (t2topholel);
+\draw[-<-] (t2bottomr) -- (t2topholer);
