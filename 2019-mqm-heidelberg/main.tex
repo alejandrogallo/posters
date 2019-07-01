@@ -64,7 +64,7 @@
       \begin{block}{\large Coupled-Cluster Ansatz}
         \input{coupled-cluster-ansatz.tex}
       \end{block}
-      \begin{block}{\large Coupled-Cluster Ansatz}
+      \begin{block}{\large \emph{EE-EOMCC} Ansatz}
         \input{equation-of-motion-cc.tex}
       \end{block}
 
@@ -83,8 +83,9 @@
         \begin{columns}
           \begin{column}{0.7\textwidth}
             \begin{tikzpicture}
+              %draft
               \node {
-              \includegraphics[draft, width=\textwidth, clip, trim=200 0 200 0]
+              \includegraphics[width=\textwidth, clip, trim=200 0 200 0]
                 {figures/fcenters/orbitals/PARCHG_0105_ALLK.pdf}
               };
               \node {$s$ like orbital};
@@ -106,14 +107,16 @@
       \end{block}
 
       \begin{block}{\large Molecule benchmark example: Formaldehyde (CH$_2$O)}
+        \begin{center}
           \includegraphics[width=0.9\textwidth]{figures/formaldehyde/plot.pdf}
-          \begin{itemize}
-            \item
-              Calculation with pseudized-gaussians
-                (see \cite{10.10631.4961301}).
-            \item
-              Singlet and triplet states retrieved.
-          \end{itemize}
+        \end{center}
+        \begin{itemize}
+          \item
+            Calculation with pseudized-gaussians
+              (see \cite{10.10631.4961301}).
+          \item
+            Singlet and triplet states retrieved.
+        \end{itemize}
       \end{block}
 
       \begin{block}{\large Acknowledgements}
