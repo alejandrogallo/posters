@@ -1,0 +1,64 @@
+# vim-run: python3 plot.py
+- name: cell 16 no=1
+  plot: True
+  data:
+    KBr: 3.50771
+    KCl: 2.95192
+    KF: 4.42853
+    LiBr: 4.31688
+    LiCl: 4.95425
+    LiF: 7.05417
+    NaBr: 4.23651
+    NaCl: 4.79593
+    NaF: 6.10097
+- name: cell 16 no=3
+  plot: True
+  data:
+    KBr: 3.50515
+    KCl: 2.94652
+    KF: 4.41996
+    LiCl: 4.93788
+    LiF: 7.02796
+    NaCl: 4.77976
+    NaF: 6.0872
+- name: cell 54 no=1
+  plot: True
+  data:
+    KBr: 2.6254
+    KCl: 2.1904
+    KF: 3.06385
+    LiBr: 3.62722
+    LiCl: 4.15446
+    LiF: 5.80358
+    NaBr: 2.93498
+    NaCl: 3.44278
+    NaF: 4.43777
+- name: cell 128 no=1
+  plot: True
+  data:
+    LiCl: 4.1888
+    LiF: 5.90912
+    NaCl: 3.3948421
+- name: 'Dawson 1969'
+  plot: True
+  plot-symbols: 'kP-'
+  data:
+    KBr: 2.059
+    KCl: 2.295
+    KF: 2.873
+    LiBr: 2.767
+    LiCl: 3.256
+    LiF: 5.083
+    NaBr: 2.345
+    NaCl: 2.746
+    NaF: 3.702
+- name: 'CASPT2 tiwald'
+  plot: False
+  plot-symbols: 'P-.'
+  data:
+    KCl: 2.7
+    KF: 3.5
+    LiCl: 3.6
+    LiF: 5.49
+    NaCl: 3.1
+    NaF: 4.4
