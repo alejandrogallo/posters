@@ -8,6 +8,7 @@
 \usepackage{multirow}
 \usepackage[orientation=portrait,size=a0,scale=1.4]{beamerposter}
 \usepackage{tikz}
+\usepackage{goldstone}
 \usetikzlibrary{arrows}
 
 \usepackage[
@@ -23,6 +24,13 @@
 \AtEveryBibitem{\clearfield{note}}
 \AtEveryBibitem{\clearfield{title}}
 \bibliography{main.bib}
+
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|\!\!
+  \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+\newcommand{\proj}[2]{\left| #1 \vphantom{#2} \right>\!\!
+  \left< #2 \vphantom{#1} \right|} % for projectors
 
 
 \title{
@@ -92,6 +100,9 @@
 
       \begin{block}{\large References \& Acknowledgements}
         \printbibliography
+        Gratefully acknowledge funding from
+        \textit{ERC starting grant}
+        \tikz[baseline]\node{\includegraphics[width=4em]{figures/erc.png}};.
       \end{block}
 
     \end{column}
