@@ -1,0 +1,44 @@
+#+title: Massively parallel coupled cluster theory algorithms for material science
+#+options: toc:nil num:nil
+
+* Abstract
+
+Many of the most important challenges our society has to face in the
+next decades are related to materials science. Computer simulations
+are expected to contribute significantly to the development and
+understanding of materials that exhibit specific properties to fulfil
+key tasks in more efficient and novel devices as well as chemical
+processes. The properties of most materials arise largely from the
+quantum mechanics of their constituent electrons under the influence
+of the electric field of the nuclei. Consequently, the accurate
+solution of the underlying many-electron Schrödinger equation is at
+the heart of ab initio calculations in materials science.
+
+A promising class of approximations widely used in quantum chemistry
+to solve the many-electron Schrödinger equation is the so-called
+coupled-cluster family of methods. These methods achieve for a large
+class of systems a high accuracy at a comparably moderate cost. Here,
+we report results of state-of-the-art simulations employing high
+performance computing resources to produce reliable benchmark results
+of molecules and surfaces containing more than 50 atoms. These
+benchmark results are needed to advance computationally more efficient
+but less accurate theories that can be improved by adjusting
+parameters and will ultimately be needed to model real materials in
+their full complexity.
+
+Computational materials science simulations can be useful in exploring
+the performance of computational infrastructures and
+algorithms. Memory and computational bounds appear often in a
+challenging interplay, which makes their investigation through
+sophisticated parallel algorithms necessary. In this poster we present
+an implementation of a widely-used theory called =CCSD(T)=.  This
+theory achieves a high degree of accuracy for thermochemical systems
+at the price of a moderately high computational cost. This
+implementation has been specifically tailored to efficiently calculate
+a large number of electrons. Our novel algorithm is based on the use
+of asynchronous MPI and reaches a high performance across a large
+numbers of cores.
+The usage of HPC resources is of significant
+importance for our ab initio simulations on the level of CCSD(T)
+theory.
+
