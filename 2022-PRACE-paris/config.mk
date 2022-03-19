@@ -1,4 +1,1 @@
-BUILD_DIR = .build
-PDFLATEX = xelatex
-PY = python3
-VIEW =
+all: tex/vasp-ctf.pdf
