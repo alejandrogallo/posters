@@ -43,16 +43,19 @@
             (edge (&rest opts) (apply #'el (cons "edge" opts)))
             (:graph (&rest opts) (apply #'el (cons "graph" opts)))
             (cluster (name &rest els) (format ,stream
-                                              "cluster cluster_~a ~a"
+                                              "subgraph cluster_~a ~a"
                                               name
                                               (apply #'scope (cons "" els))))
+            (:list (&rest els) (format nil "~&~{~a~%~}"
+                                       (remove-if-not
+                                        (lambda (x) (and (atom x)
+                                                         (not (functionp x))
+                                                         (not (null x))))
+                                        els)))
             (-named-scope (scope-name name els)
               (format ,stream "~a ~a {~%~a~%}"
                       scope-name name
-                      (indent-list (remove-if-not
-                                    (lambda (x) (and (atom x)
-                                                     (not (functionp x))
-                                                     (not (null x)))) els))))
+                      (indent (apply #':list els))))
             (graph (name &rest els) (-named-scope "graph" name els))
             (digraph (name &rest els) (-named-scope "digraph" name els)))
      ,graph))
@@ -72,43 +75,3 @@
                (uiop:run-program dot-cmd :output o :input i))
              f)))
     out-file))
-
-
-
-(defun hole (from to)
-  `(<- ,from ,to '(:color :red)))
-(defun particle (from to)
-  `(-> ,from ,to '(:color :black)))
-
-(defun make-top (names &rest opts)
-  `(scope "top level"
-          (:= :rank :sink)
-          (node '(shape point) '(width .01))
-          ,@opts
-          ,@names))
-
-(save "test"
-      `(graph "Diagram"
-              (:graph '(:fontname "CMU Serif")
-                      '(:rankdir "BT")
-                      '(:splines "line")
-                      '(:nodesep "equally"))
-
-              (scope "t2-diagram"
-                     ,(make-top '(:top1 :top2 :top3 :top4))
-                     (el :t2 '(label "<0>|T|<1>") '(shape "record") '(:height 0.1))
-
-                     ;; legs
-                     ,(hole "t2:0" :top1)
-                     ,(particle "t2:0" :top2)
-                     ,(hole "t2:1" :top3)
-                     ,(particle "t2:1" :top4))
-
-              (scope "t1-diagram"
-                     ,(make-top '(:top1_1 :top1_2))
-                     (el :t1 '(label "T") '(shape "square") '(height 0.0))
-                     ,(hole "t1:0" :top1_1)
-                     ,(particle "t1:0" :top1_2))
-
-              )
-      :format :svg)
