@@ -1,6 +1,6 @@
 (load "goldstone.lisp")
 
-(defparameter *n* 3)
+(defparameter *n* 2)
 (defparameter *tops*
   (let ((n-legs (* 2 (/ (* *n* (+ *n* 1)) 2))))
     (loop for i below n-legs
@@ -13,11 +13,13 @@
 (defparameter *contractions*
   (loop for ts in *ts*
         with i = 0
-        append
-        (let ((name (cadr ts)))
-          (loop for j below (* 2 (incf i))
-                collect (hole (format nil "~a:~a" name j)
-                              (nth (- (+ (* 2 i) j) 1) *tops*))))))
+        with c = -1
+        append (let ((name (cadr ts)))
+                 (loop for j below (incf i)
+                       appending (list (hole #1=(format nil "~a:~a" name j)
+                                             #2=(nth (incf c) *tops*))
+                                       (particle #1# #2#))))))
+
 
 
 (save "fcc"
@@ -27,4 +29,10 @@
               ,@*ts*
               ,@*contractions*
               ))
+
+(reduce (lambda (x y)
+          (cons x (when y (cons '+ y))))
+        '(1 5 6)
+        :initial-value nil
+        :from-end t)
 
