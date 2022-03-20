@@ -7,6 +7,7 @@ pkgs.mkShell rec {
     tectonic
     texlive.combined.scheme-medium
     gnuplot
+    graphviz
     asymptote
     python3
     python3Packages.matplotlib
