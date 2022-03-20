@@ -21,4 +21,9 @@ jobs:
     - name: Install nix dependencies
       env:
         WITH_SHELL: "nix-shell --pure --run"
+      run: ${WITH_SHELL} 'echo hello'
+
+    - name: Make all
+      env:
+        WITH_SHELL: "nix-shell --pure --run"
       run: ${WITH_SHELL} 'make all'

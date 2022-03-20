@@ -13,6 +13,8 @@ pkgs.mkShell rec {
     python3
     python3Packages.matplotlib
     python3Packages.pyyaml
+
+    coreutils-full
   ];
 
   shellHook = ''
