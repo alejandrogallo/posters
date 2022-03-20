@@ -6,6 +6,7 @@ pkgs.mkShell rec {
     sbcl
     tectonic
     texlive.combined.scheme-medium
+    imagemagick
     gnuplot
     graphviz
     asymptote
