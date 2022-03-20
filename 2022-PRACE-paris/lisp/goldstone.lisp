@@ -12,8 +12,9 @@
                  names)
      ,@forms))
 
-(defun hole (from to)
-  `(<- ,from ,to '(:color :black)))
+(defun hole (from to &rest attrs)
+  (append `(<- ,from ,to '(:color :black))
+          attrs))
 
 (defun particle (from to)
   `(-> ,from ,to '(:color :red)))
