@@ -14,6 +14,7 @@ pkgs.mkShell rec {
     python3Packages.matplotlib
     python3Packages.pyyaml
 
+    gnumake
     coreutils-full
   ];
 
