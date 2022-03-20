@@ -1,12 +1,9 @@
-# Poster template for [tuwien](https://www.tuwien.at) researchers
+# Equation of motion coupled cluster theory using periodic boundary conditions
 
-## Usage
 
-Just type
-
-```
-make
-```
-
-and it should compile putting all build files in
-`.build` directory.
+We present recent progress in the implementation of an equation of motion
+coupled cluster theory method using periodic boundary conditions and a plane
+wave basis set.  We seek to study electronic ground and excited states in
+Nitrogen Vacancy centers in diamond which have become a promising candidate
+for a bulk room temperature quantum information processing device. Technical
+details of the implementation and preliminary results will be presented.
