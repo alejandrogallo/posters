@@ -17,6 +17,8 @@ lisp/t-4.dot
 lisp/t-4.svg
 lisp/t-5.dot
 lisp/t-5.svg
+tex/*png
+tex/*pdf
 
 .~lock.presentation.odp#
 

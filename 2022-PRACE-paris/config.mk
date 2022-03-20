@@ -10,10 +10,18 @@ SINGLE_AMPLS = \
 	lisp/t-5.dot \
 	lisp/t-5.svg \
 
+TEXFILES = $(wildcard tex/*.tex)
+PDF_TEXFILES = $(patsubst %.tex,%.pdf,$(TEXFILES))
+PNG_TEXFILES = $(patsubst %.tex,%.png,$(TEXFILES))
+
+%.png: %.pdf
+	convert -density 500 $< $@
+
 $(SINGLE_AMPLS): lisp/tn.lisp
 	cd $(@D) && sbcl --script $(notdir $<)
 
 all: \
 	tex/vasp-ctf.pdf \
 	$(SINGLE_AMPLS) \
+	$(PNG_TEXFILES) \
 
