@@ -5,7 +5,7 @@ pkgs.mkShell rec {
   buildInputs = with pkgs; [
     sbcl
     tectonic
-    texlive
+    texlive.combined.scheme-medium
     gnuplot
     asymptote
     python3
