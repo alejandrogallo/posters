@@ -1,17 +1,5 @@
 (load "dot.lisp")
 
-(defmacro with-gensyms (names &body forms)
-  `(let ,(mapcar (lambda (name)
-                   (multiple-value-bind (symbol string)
-                       (etypecase name
-                         (symbol
-                          (values name (symbol-name name)))
-                         ((cons symbol (cons string-designator null))
-                          (values (first name) (string (second name)))))
-                     `(,symbol (gensym ,string))))
-                 names)
-     ,@forms))
-
 (defun hole (from to &rest attrs)
   (append `(<- ,from ,to '(:color :black))
           attrs))

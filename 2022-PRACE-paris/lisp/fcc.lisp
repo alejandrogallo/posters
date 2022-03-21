@@ -1,6 +1,6 @@
 (load "goldstone.lisp")
 
-(defparameter *n* 2)
+(defparameter *n* 3)
 (defparameter *tops*
   (let ((n-legs (* 2 (/ (* *n* (+ *n* 1)) 2))))
     (loop for i below n-legs
@@ -29,10 +29,3 @@
               ,@*ts*
               ,@*contractions*
               ))
-
-(reduce (lambda (x y)
-          (cons x (when y (cons '+ y))))
-        '(1 5 6)
-        :initial-value nil
-        :from-end t)
-
