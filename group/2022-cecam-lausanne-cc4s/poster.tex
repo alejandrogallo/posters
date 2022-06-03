@@ -1,0 +1,333 @@
+%laden der Präambel mit Latexbefehlen/-klassen
+\include{00-preambel}
+
+\begin{document}
+	\typeout{Poster rendering started}
+	
+\background{
+	\begin{tikzpicture}[remember picture,overlay]%
+	\draw (current page.north west)+(-2em,2em) node[anchor=north west]
+	{\includegraphics[height=1.1\textheight]{figures/background}};
+	\end{tikzpicture}
+}
+
+\color{standardfontcolor}
+
+\begin{poster}{
+		grid=false,
+		columns=3,
+		%colspacing=length
+		headerheight=0.125\textheight,
+		eyecatcher=false, 
+		borderColor=bordercol,
+		headerColorOne=headercol1,
+		headerColorTwo=headercol2,
+		headerFontColor=headerfontcol,
+		% Only simple background color used, no shading, so boxColorTwo isn't necessary
+		boxColorOne=boxcolor,
+		headershape=roundedright,
+		headerfont=\sffamily\bfseries\Large,
+		textborder=rectangle,
+		headerborder=open,
+		boxshade=plain,
+		background=none
+%		background=user
+	}
+	%%% Eye Cacther %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	{
+		Eye Catcher, empty if option eyecatcher=false - unused
+	}
+%----------------------------------------------------------------------------------------
+%	TITLE AND AUTHOR NAME
+%----------------------------------------------------------------------------------------
+%
+{
+	\textsf %Sans Serif
+	{Periodic Coupled Cluster Theory and \\Applications: Interface to FHI-aims and VASP}
+}
+{\sf\vspace{0.5em}\\
+	Evgeny Moerman\textsuperscript{1}, Andreas Irmler\textsuperscript{2}, Felix Hummel\textsuperscript{2}, 
+	Andreas Grüneis\textsuperscript{2}, Matthias Scheffler\textsuperscript{1}
+	\vspace{0.1em}\\
+	\small{\textsuperscript{1} The NOMAD Laboratory at the FHI-MPG, Berlin
+	\vspace{0.2em}\\
+	\textsuperscript{2} Institute for Theoretical Physics, TU Wien, Vienna}
+}
+% University/lab logo
+{\includegraphics[height=3cm]{bilder/logo/NOMAD_Logo_srgb_print_wlow.jpg}} 
+%
+%
+\headerbox{Abstract}{name=einleitung,column=0,row=0,span=3}{
+%Vorlage für die Erstellung eines Posters. Es wird die Klasse baposter verwendet. In der entsprechenden Dokumentation %finden sich Hinweise zur Gestaltung. Die Vorlage bietet ein einfaches Layout, dass zur Bearbeitung der Aufgabenstellung %ausreichend sein sollte. Die Einbindung verschiedener Elemente ist beispielhaft gezeigt.
+%
+%Hier könnte die Einleitung stehen, also Motivation, Ziel der Arbeit, Aufgabenstellung, etc.
+%
+%Literaturverweise, ein Buch \cite{epple2009,gruhn1976} und ein Artikel \cite{Klaucke2020,Hofmann2018}
+
+Coupled cluster (CC) theory achieves a high level of accuracy for a wide range of properties in atoms and molecules at affordable computational cost.
+	However, only few codes exist for CC calculations of periodic systems. The \texttt{Cc4s} code~\cite{cc4s}
+allows for periodic CCSD(T)-level calculations and it has been interfaced to
+VASP\cite{kresse1996efficiency} and, recently, to FHI-aims\cite{moerman2022interface, fhiaims}.
+Together these interfaces, which cover atom-centered basis and plane-wave codes, can be generalized to 
+interface most other ab-initio software packages to \texttt{Cc4s}. This enables a wide range of applications ranging from molecular systems in the gas phase to solids and surfaces.
+}
+
+%\headerbox{General Workflow}{name=Workflow,column=0,below=einleitung,span=2}{
+%	%\begin{center}
+%		\includegraphics[scale=0.5875]{bilder/CC_aims_flowchart.pdf}		
+%	%\end{center}
+%	\begin{tikzpicture}
+%        \matrix(m) [] {
+%            \node {\includegraphics[width=4cm]{bilder/FHI-aims-logo.png}}; \\
+%            \node {\includegraphics[width=4cm]{bilder/vasp_logo.png}}; \\
+%    };
+%    %\node[above right = of a] (c) {c};
+%    \node [inner sep=1.0mm, fill=red!50, right = of m, style={single arrow, draw=none}, align=center] %(arrow1) 
+%    {perform SCF and \\ write ab-initio \\ quantities  to files \\ via interface};
+%    
+%    \node [inner sep=0pt, right = of arrow1] (filesimg) %{\includegraphics[width=2cm]{bilder/filesicon.jpg}};
+%    \node[below= \belowcaptionskip of filesimg,text width=\linewidth]
+%    {\captionof{figure}{\texttt{EigenEnergies.dat} \\ \texttt{CoulombVertex.dat} \\ %\texttt{FockOperator.dat} \\ $\dots$} };
+%    
+%    \node [inner sep=1.0mm, fill=red!50, right = of filesimg, style={single arrow, draw=none}, %align=center] (arrow2) 
+%    {perform \\ correlated \\ calculation \\ (MP2, CCSD, ...)};
+%    
+%    \node [right = of arrow2]{\includegraphics[width=4cm]{bilder/cc4s_logo_cropped.png}};
+%\end{tikzpicture}
+%}
+
+\headerbox{EOM-CCSD for trans-[C\textsubscript{2}H\textsubscript{2}]\textsubscript{n}}{name=Bandstructure,column=0,below=einleitung,span=1}{
+    %\begin{center}
+%		\includegraphics[scale=0.5]{bilder/bandstructure.pdf}		
+%	\end{center}
+
+\begin{minipage}{0.7\linewidth}
+\includegraphics[scale=0.45]{bilder/bandstructure.pdf}
+\end{minipage}
+\hspace{0.4cm}
+\begin{minipage}{0.2\linewidth}
+  \begin{center}
+  \includegraphics[scale=0.04, angle=90]{bilder/polyacetylene_centered_long_cropped_2nd.png}
+  \end{center}
+\end{minipage}
+
+    \begin{center}
+     Bandstructure obtained via EA- and IP-EOM-CCSD\cite{stanton1993equation} using 
+     NAO-VCC-2Z basis set
+     \end{center}
+
+%     \begin{center}
+%	     \includegraphics[scale=0.04]{bilder/polyacetylene_centered_long_cropped.png}
+%     \end{center}
+}
+\headerbox{CCSD for H\textsubscript{2}O@C\textsubscript{6}H\textsubscript{6}}{name=H2OGraphene,column=0,below=Bandstructure,span=1}{
+\begin{minipage}{0.3\linewidth}
+  \begin{center}
+    \includegraphics[scale=0.03]{bilder/geometry_small_cropped.png}
+  \end{center}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}{0.5\linewidth}
+\begin{tabular}{ c|c } 
+ Method & E\textsubscript{ad}(kcal/mol)\\\hline
+ CCSD/CBS(45) & -2.4  \\
+ PBE-D3\cite{ajala2019assessment} & -3.2 \\
+ B3LYP-D3\cite{ajala2019assessment} & -3.4 \\
+ RPA\cite{ajala2019assessment} & -2.5 \\
+ DMC\cite{ajala2019assessment} & -2.9
+\end{tabular}
+\end{minipage}
+}
+
+
+
+\headerbox{CCSD(T) for C\textsubscript{2}H\textsubscript{4}@Si(cd)}{name=C2H4Si,column=0,below=H2OGraphene,span=1}{
+\begin{minipage}{0.2\linewidth}
+\includegraphics[scale=0.2]{bilder/poscar_pre.png}
+\end{minipage}
+\hspace{2.2cm}
+\begin{minipage}{0.5\linewidth}
+70 atoms with $N_{\rm o}=110$. CCSD and (T) calculations with $N_{\rm v}=1650$
+and $N_{\rm v}=550$, respectively\cite{tonner}. \\
+
+\begin{tabular}{ c|c } 
+ Method & E\textsubscript{ad}(kcal/mol)\\
+	\hline
+ PBE & -12.2  \\ 
+ PBE-D3 & -17.1  \\ 
+ HF & 1.6 \\
+ MP2 & -20.0 \\
+ CCSD & -11.4 \\
+ CCSD(T) & -9.9
+\end{tabular}
+\end{minipage}
+
+
+}
+
+\headerbox{CCSD(T):RPA for H\textsubscript{2}O@[C\textsubscript{3}N\textsubscript{4}]}{name=H2OC3N4,column=0,below=C2H4Si,span=1}{
+138 atoms with $N_{\rm o}=292$. Embedded CCSD(T) calculations with
+up to $N_{\rm o}=40$ and $N_{\rm v}=800$\cite{schafer2021}.\\
+\begin{minipage}{0.18\linewidth}
+\vspace{0.9cm}
+ \includegraphics[scale=0.18]{./bilder/h2o_gc3n4_topview.png}\\
+\bigskip
+\includegraphics[scale=0.054]{./bilder/h2o_gc3n4_sideview.png}
+\end{minipage}
+\hspace{1.8cm}
+\begin{minipage}{0.5\linewidth}
+\begin{tabular}{ c|c } 
+	{\small  Method } & {\small  E\textsubscript{ad} (kcal/mol) }\\
+	\hline
+ PBE & -8.1  \\ 
+ PBE-D3 & -12.2 \\ 
+ PBE-TS & -12.7 \\ 
+ PBE0-MBD & -12.4 \\ 
+ HF & -4.8 \\
+	{\small  MP2:dMP2 } & -12.4 \\
+	{\small  CCSD:RPA } & -10.7 \\
+	{\small  CCSD(T):RPA } & -11.9
+\end{tabular}
+\end{minipage}
+
+
+}
+
+
+
+%\headerbox{The Coulomb vertex}{name=CoulombVertex,column=0, below=Workflow, span=2}{
+%The common memory bottleneck of wave-function based methods is the calculation
+%and saving of the Coulomb integrals $V_{pq}^{rs}$.\\
+%
+%\textcolor[rgb]{0.05, 0.6, 0.35}{Solution: } The Coulomb vertex $\Gamma_{p}^{rG}$, a rank-3 tensor %approximation
+%of the $V_{pq}^{rs}$-tensor:
+%\begin{equation}
+%    V_{pq}^{rs} = \sum_{G} \Gamma_{p}^{rG*}\Gamma_{q}^{sG}
+%\end{equation}
+%
+%Due to the reduced dimension, 
+%the memory scaling of such methods is lower, allowing for bigger systems to be calculated.
+%}
+\headerbox{Atomic orbitals - FHI-aims}{name=fhiaims,column=1,below=einleitung,span=1}{
+FHI-aims\cite{fhiaims} is an all-electron electronic structure
+package and employs numerical atomic orbitals (NAOs) for both
+molecules and periodic systems,
+interfaced to \texttt{Cc4s} via the CC-aims interface\cite{moerman2022interface,ccaims}. \\
+
+Interface requirements:
+\begin{compactitem}
+    \item localized basis set (GTO, NAO, STO, ...)
+    \item Resolution-of-Identity (RI) scheme for the
+    evaluation of Coulomb integrals
+\end{compactitem}
+\smallskip
+
+Coulomb vertex can be evaluated via:
+\begin{equation*}\label{local-vertex}
+  \Gamma_{r\eta}^{q}
+  =\sum_{\mu\alpha\gamma}
+  {c^\ast}_\alpha^q (\bm{k}_q)c_r^\gamma(\bm{k}_r)
+  C_{\gamma\mu}^{\alpha}(\bm{k_q},\bm{k_r})
+  \left[\left(V^{\bm{k_q}-\bm{k_r}}\right)^\frac12\right]_\eta^\mu
+\end{equation*}
+with
+\begin{compactitem}
+    \item the HF/KS-state vectors $c_{q}^{\alpha}$
+    \item the RI-expansion coefficients $C_{\gamma\mu}^{\alpha}$
+    \item the auxiliary Coulomb matrix built from the RI-functions
+    $P_{\mu}(\bm{r})$:
+    $V^{\mu}_{\eta} = \int d\bm{r}\bm{r'} \frac{P_{\eta}(\bm{r}){P^\ast}^{\mu}(\bm{r'})}{|\bm{r}-\bm{r'}|}$
+\end{compactitem}
+
+}
+\headerbox{Plane waves - VASP}{name=vasp,column=1,below=fhiaims,span=1}{
+VASP employs a plane-wave basis set and the projector augmented wave (PAW) method
+to approximate the one-electron orbitals with periodic boundary conditions~\cite{blochl1994,kresse1996efficiency}.
+
+The Coulomb vertex can be evaluated via~\cite{hummel2017}:
+\begin{equation*}\label{pw-vertex}
+\Gamma_{r \bm{G}}^{q}
+  =
+  \sqrt{\frac{4\pi}{{\bm G}^2}}
+  \int{\rm d}{\bm x}\,
+  {\rm e}^{-{\rm i}{\bm G}\cdot{\bm r}}\,
+  {\psi^\ast}^q({\bm x}) \psi_r({\bm x})\,
+\end{equation*}
+with
+\begin{compactitem}
+    \item plane-wave vectors $\bm{G}$
+    \item the orbital co-densities ${\psi^\ast}^q({\bm x})\psi_r({\bm x})$
+are approximated in the PAW method using Eq.~(2.87) of
+Ref.~\cite{harl2008}
+    \item
+automated basis-set extrapolation for MP2 
+    \item
+	    automated auxiliary-field truncation~\cite{hummel2017}
+    \item
+memory-efficient approximate natural orbital algorithm~\cite{gruneis2011}
+\end{compactitem}
+
+
+}
+
+
+\headerbox{Strong scaling}{name=strongscaling,column=0,below=H2OC3N4,span=1}{
+    \begin{center}
+		\includegraphics[scale=0.5]{bilder/strong_scaling.pdf}		
+	\end{center}
+}
+
+\headerbox{Weak scaling}{name=weakscaling,column=1,below=vasp,span=1}{
+	\begin{center}
+		\includegraphics[scale=0.5]{bilder/weak_scaling.pdf}		
+	\end{center}
+}
+
+\begin{posterbox}[name=cc4s,column=2,below=einleitung,span=1]{Cc4s}
+Coupled cluster for solids (Cc4s):
+\begin{compactitem}
+\item extended Einstein convention in source, e.g.:
+{\small
+\begin{lstlisting}
+R["abij"] += T["acik"]*T["dblj"]*V["klcd"]
+\end{lstlisting}
+}
+\item
+optimal contraction order automatically determined
+by tensor-contraction-compiler (\texttt{tcc})
+\item
+lazy evaluation only of terms needed
+\item
+interfaced to parallel tensor frameworks,
+	currently Cyclops Tensor Framework (CTF)~\cite{solomonik2014} %site...
+\item 
+standardized input/output for tensors of arbitrary rank
+\item efficient CBS and TDL approximations for CCSD~\cite{gruber2018,irmler2021}
+\end{compactitem}
+\end{posterbox}
+
+\headerbox{Cc4s-Workflow}{name=workflow,column=2,below=cc4s,span=1}{
+\begin{center}
+	\includegraphics{bilder/cc4s-flowchart}		
+\end{center}
+}
+
+\headerbox{References}{name=literatur,column=1,below=workflow,span=2}{
+\AtNextBibliography{\footnotesize}
+\setlength\bibitemsep{0pt}
+\printbibliography[heading=none]
+}
+
+%\headerbox{Summary and outlook}{name=ergebnis,column=0,below=fhiaims,span=1}{
+%\begin{compactitem}
+%    \item \texttt{CC4S} and its interfaces are a 
+%    valuable tool for materials scientists to obtain reliable \& accurate data
+%	\item The range of methods in \texttt{CC4S} is continuously increasing
+%	\item The two interfaces pave the way for many other codes - atom-centered and plane wave - to use %\texttt{CC4S}
+%\end{compactitem}
+%}
+
+
+
+\end{poster}
+\end{document}
