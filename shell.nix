@@ -5,7 +5,7 @@ pkgs.mkShell rec {
   buildInputs = with pkgs; [
     sbcl
     tectonic
-    texlive.combined.scheme-medium
+    texlive.combined.scheme-full
     imagemagick
     gnuplot
     graphviz

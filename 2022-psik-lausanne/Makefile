@@ -238,7 +238,6 @@ BUILD_DIR_FLAG  ?= $(if \
                    .,$(strip $(BUILD_DIR))),-output-directory $(BUILD_DIR))
 
 $(BUILD_DIR):
-	$(ECHO) $(call print-cmd-name,mkdir) $@
 	$(DBG_FLAG)mkdir -p $@ $(FD_OUTPUT)
 	$(DBG_FLAG)for i in $(TEXFILES); do \
 		mkdir -p $@/$$(dirname $$i); \
@@ -264,7 +263,6 @@ $(PACKAGES_DIR)/*.clo \
 )
 
 $(BUILD_DIR)/%: $(PACKAGES_DIR)/%
-	$(ECHO) $(call print-cmd-name,CP) $@
 	$(DBG_FLAG)mkdir -p $(BUILD_DIR)
 	$(DBG_FLAG)cp $^ $@
 
@@ -334,7 +332,6 @@ endif #MAIN_SRC exists
 
 
 $(AUX_FILE):
-	$(ECHO) $(call print-cmd-name,$(PDFLATEX)) $@
 	$(DBG_FLAG)$(PDFLATEX) $(BUILD_DIR_FLAG) $(MAIN_SRC) $(FD_OUTPUT)
 
 # Default dependencies for `BUILD_DOCUMENT`
@@ -382,7 +379,6 @@ endif
 FIGURES ?=
 
 $(TOC_FILE): $(TOC_DEP)
-	$(ECHO) $(call print-cmd-name,$(PDFLATEX)) $@
 	$(DBG_FLAG)mkdir -p $(BUILD_DIR)
 	$(DBG_FLAG)cd $(dir $(MAIN_SRC) ) && $(PDFLATEX) \
 		$(BUILD_DIR_FLAG) $(notdir $(MAIN_SRC) ) $(FD_OUTPUT)
@@ -449,7 +445,6 @@ $(BIBITEM_FILES): $(BIBTEX_FILES)
 			cp -u $$bibfile $(BUILD_DIR)/$$(dirname $$bibfile); \
 		done \
 		}
-	$(ECHO) $(call print-cmd-name,$(BIBTEX)) $@
 	$(DBG_FLAG)cd $(BUILD_DIR); $(BIBTEX) $(patsubst %.tex,%,$(MAIN_SRC)) $(FD_OUTPUT)
 	$(ARROW) Compiling again $(BUILD_DOCUMENT) to update refs
 	$(DBG_FLAG)$(MAKE) --no-print-directory force
@@ -525,24 +520,19 @@ ASYMPTOTE ?= asy
 GNUPLOT ?= gnuplot
 
 $(FIGS_SUFFIXES): %.asy
-	$(ECHO) $(call print-cmd-name,$(ASYMPTOTE)) $@
 	$(DBG_FLAG)cd $(dir $<) && $(ASYMPTOTE) -f \
 		$(shell echo $(suffix $@) | $(TR) -d "\.") $(notdir $< ) $(FD_OUTPUT)
 
 $(FIGS_SUFFIXES): %.gnuplot
-	$(ECHO) $(call print-cmd-name,$(GNUPLOT)) $@
 	$(DBG_FLAG)cd $(dir $< ) && $(GNUPLOT) $(notdir $< ) $(FD_OUTPUT)
 
 $(FIGS_SUFFIXES): %.sh
-	$(ECHO) $(call print-cmd-name,$(SH)) $@
 	$(DBG_FLAG)cd $(dir $< ) && $(SH) $(notdir $< ) $(FD_OUTPUT)
 
 $(FIGS_SUFFIXES): %.py
-	$(ECHO) $(call print-cmd-name,$(PY)) $@
 	$(DBG_FLAG)cd $(dir $< ) && $(PY) $(notdir $< ) $(FD_OUTPUT)
 
 $(FIGS_SUFFIXES): %.tex
-	$(ECHO) $(call print-cmd-name,$(PDFLATEX)) $@
 	$(DBG_FLAG)mkdir -p $(dir $<)/$(BUILD_DIR)
 	$(DBG_FLAG)cd $(dir $<) && $(PDFLATEX) \
 		$(BUILD_DIR_FLAG) $(notdir $*.tex ) $(FD_OUTPUT)
@@ -552,7 +542,6 @@ ifneq ($(strip $(BUILD_DIR)),.)
 endif
 
 %.pdf: %.eps
-	$(ECHO) $(call print-cmd-name,$(EPS2PDF)) $@
 	$(DBG_FLAG)cd $(dir $< ) && $(EPS2PDF) $(notdir $< ) $(FD_OUTPUT)
 
 
@@ -563,15 +552,12 @@ endif
 
 
 %.tex: %.sh
-	$(ECHO) $(call print-cmd-name,$(SH)) $@
 	$(DBG_FLAG)cd $(dir $<) && $(SH) $(notdir $<) $(FD_OUTPUT)
 
 %.tex: %.py
-	$(ECHO) $(call print-cmd-name,$(PY)) $@
 	$(DBG_FLAG)cd $(dir $<) && $(PY) $(notdir $<) $(FD_OUTPUT)
 
 %.tex: %.pl
-	$(ECHO) $(call print-cmd-name,$(PERL)) $@
 	$(DBG_FLAG)cd $(dir $<) && $(PERL) $(notdir $<) $(FD_OUTPUT)
 
 
@@ -610,7 +596,6 @@ view-pdf: $(PDF_VIEWER) open-pdf ## Refresh and open pdf
 # Open a viewer if there is none open viewing `$(BUILD_DOCUMENT)`
 #
 open-pdf: $(BUILD_DOCUMENT) ## Open pdf build document
-	$(ECHO) $(call print-cmd-name,$(PDF_VIEWER)) $(BUILD_DOCUMENT)
 	-$(DBG_FLAG)ps aux | $(GREP) -v $(GREP) \
 	| $(GREP) "$(PDF_VIEWER)" \
 	| $(GREP) -q "$(BUILD_DOCUMENT)" \
@@ -687,7 +672,6 @@ clean: ## Remove build and temporary files
 		for file in $(CLEAN_FILES); do \
 			test -e $$file && { \
 				$(RM) $(RM_FLAGS) $$file &&      \
-				echo $(call print-cmd-name,RM) "$$file";\
 		 } || : ; \
 		done \
 	}
@@ -760,7 +744,6 @@ REVEALJS_SRC ?= https://github.com/hakimel/reveal.js/
 # This creates a man page using `pandoc`.
 #
 man: $(MAIN_SRC)
-	$(ARROW) $(call print-cmd-name,$(PANDOC)) $(BUILD_DOCUMENT)
 	$(PANDOC) -s -f latex -t man $(MAIN_SRC) -o $(BUILD_DOCUMENT)
 
 # =============
@@ -770,7 +753,6 @@ man: $(MAIN_SRC)
 # This creates an html page using `pandoc`.
 #
 html: $(MAIN_SRC)
-	$(ARROW) $(call print-cmd-name,$(PANDOC)) $(BUILD_DOCUMENT)
 	$(PANDOC) --mathjax -s -f latex -t html5 $(MAIN_SRC) -o $(BUILD_DOCUMENT)
 
 
@@ -852,11 +834,8 @@ DIST_DIR ?= dist
 # configuration.
 #
 dist: $(BUILD_DOCUMENT) ## Create a dist folder with the bare minimum to compile
-	$(ECHO) $(call print-cmd-name,mkdir) $(DIST_DIR)
 	$(DBG_FLAG)mkdir -p $(DIST_DIR)
-	$(ECHO) $(call print-cmd-name,cp) $(DIST_DIR)/Makefile
 	$(DBG_FLAG)cp Makefile $(DIST_DIR)/
-	$(ECHO) $(call print-cmd-name,cp) $(DIST_DIR)/$(BUILD_DOCUMENT)
 	$(DBG_FLAG)cp $(BUILD_DOCUMENT) $(DIST_DIR)/
 	$(ARROW) "Copying bib files"
 	$(DBG_FLAG)test -n "$(BIBTEX_FILES)" && {\
@@ -909,9 +888,7 @@ MERGE_FILE = merged.tex
 #
 merge: $(MERGE_FILE) ## Create a merged file
 $(MERGE_FILE): $(TEXFILES)
-	$(ECHO) $(call print-cmd-name,CP) $@
 	$(DBG_FLAG)cp $(MAIN_SRC) $@
-	$(ECHO) $(call print-cmd-name,m4) $(@)
 	$(DBG_FLAG)$(FD_OUTPUT)for texfile in $(TEXFILES); do\
 			cat $@ | \
 			$(removeTexComments) | \
