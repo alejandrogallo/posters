@@ -8,7 +8,7 @@ datafile = os.path.join(os.path.dirname(__file__), "data.yaml")
 plt.style.use('../plot.mplstyle')
 
 with open(datafile) as fd:
-    data = list(yaml.load(fd))
+    data = list(yaml.load(fd, Loader=yaml.SafeLoader))
 
 for calc in data:
     if not calc.get('plot', True):

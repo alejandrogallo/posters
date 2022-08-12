@@ -5,7 +5,7 @@ pkgs.mkShell rec {
   buildInputs = with pkgs; [
     sbcl
     tectonic
-    texlive.combined.scheme-medium
+    texlive.combined.scheme-full
     imagemagick
     gnuplot
     graphviz
@@ -18,6 +18,8 @@ pkgs.mkShell rec {
     coreutils-full
     inkscape
     asymptote
+    gnugrep
+    gnused
   ];
 
   shellHook = ''

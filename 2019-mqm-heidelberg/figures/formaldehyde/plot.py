@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 plt.style.use('../plot.mplstyle')
 
 with open('data.yaml') as f:
-    data = yaml.load(f)
+    data = yaml.load(f, Loader=yaml.SafeLoader)
     for data_set in data:
         if not data_set.get('show', True): continue
         (data_set.get('energies') and
@@ -26,4 +26,4 @@ plt.xlabel('State')
 plt.xlim([0,16])
 plt.legend()
 plt.savefig('plot.pdf')
-plt.show()
+# plt.show()
