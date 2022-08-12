@@ -1,0 +1,28 @@
+% vim:ft=tex nospell
+\begin{block}{\large Plane waves - VASP}
+  VASP employs a plane-wave basis set and the projector augmented wave (PAW) method
+  to approximate the one-electron orbitals with periodic boundary conditions.%
+  ~\cite{blochl1994,kresse1996efficiency}
+
+  The Coulomb vertex can be evaluated via:
+  \begin{equation*}\label{pw-vertex}
+    \Gamma_{r \bm{G}}^{q}
+    =
+    \sqrt{\frac{4\pi}{{\bm G}^2}}
+    \int{\rm d}{\bm x}\,
+    {\rm e}^{-{\rm i}{\bm G}\cdot{\bm r}}\,
+    {\psi^\ast}^q({\bm x}) \psi_r({\bm x})\,
+  \end{equation*}
+  with
+  \begin{compactitem}
+  \item plane-wave vectors $\bm{G}$
+  \item the orbital co-densities ${\psi^\ast}^q({\bm x})\psi_r({\bm x})$
+    are approximated in the PAW method.
+  \item
+    automated basis-set extrapolation for MP2
+  \item
+    approximate natural orbital algorithm~\cite{gruneis2011,gruber2018,irmler2021}
+  \end{compactitem}
+  \phantom{lala}
+\end{block}
+

@@ -1,0 +1,120 @@
+% vim:ft=tex nospell
+\documentclass[final]{beamer}
+
+\input{style.tex}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb,latexsym}
+\usepackage{multirow}
+\usepackage{paralist}
+\usepackage{bm}
+\usepackage[orientation=portrait,size=a0,scale=1.4]{beamerposter}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\usepackage[
+  hyperref=false,
+  url=false,
+  abbreviate=true,
+  maxnames=1,
+  date=year,
+  style=nature,
+  backend=bibtex,
+  doi=false
+]{biblatex}
+\AtEveryBibitem{\clearfield{note}}
+\AtEveryBibitem{\clearfield{title}}
+\bibliography{main.bib}
+
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|\!\!
+  \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+\newcommand{\proj}[2]{\left| #1 \vphantom{#2} \right>\!\!
+  \left< #2 \vphantom{#1} \right|} % for projectors
+
+
+\title{
+  CC4S: Massively parallel coupled cluster theory algorithms for material
+  science
+}
+\author{%
+    { \underline Alejandro Gallo}%
+  , Felix Hummel
+  , Evgeny Moerman
+  , Andreas Irmler%
+  , Tobias Schäfer%
+  , Andreas Grüneis%
+  }
+\def\correspondingAuthorEmail{alejandro.gallo@tuwien.ac.at}
+\def\website{http://cqc.tuwien.ac.at}
+\institute[]{
+  Technical University of Vienna
+}
+
+
+\begin{document}
+
+\newcommand{\posterColumnWidth}{0.32\textwidth}
+\begin{frame}[fragile]{}
+  \input{abstract.tex}
+
+  \begin{columns}[T]
+
+    % -------------------------------------------------------------
+
+    \begin{column}{\posterColumnWidth}
+      \input{cc4s-logo.tex}
+      \input{water-block.tex}
+      \input{c2h4-on-silicon.tex}
+      \input{ccsdpt-rpa-tobias.tex}
+    \end{column}
+
+    % -------------------------------------------------------------
+    \nocite{solomonik2014}
+    \begin{column}{\posterColumnWidth}
+      \newcommand{\scalingWidth}{0.8\textwidth}
+      \include{strong-scaling.tex}
+      \vspace*{-3.0cm}
+      \input{vasp.tex}
+      \input{fhi-aims.tex}
+    \end{column}
+
+    % -------------------------------------------------------------
+
+    \begin{column}{\posterColumnWidth}
+
+      \newcommand{\scalingWidth}{0.8\textwidth}
+      \include{weak-scaling.tex}
+      \vspace*{-3.0cm}
+      \input{cc4s-workflow.tex}
+
+
+    \end{column}
+
+    % -------------------------------------------------------------
+
+  \end{columns}
+
+  % =============================================================
+  \vspace*{1cm}
+  % =============================================================
+
+  \begin{columns}[T]
+    % -------------------------------------------------------------
+    \begin{column}{0.32\textwidth}
+      \include{acknowledgements.tex}
+    \end{column}
+    % -------------------------------------------------------------
+    \begin{column}{0.64\textwidth}
+      \begin{block}{\large References}
+        \tiny
+        \printbibliography
+      \end{block}
+    \end{column}
+    % -------------------------------------------------------------
+  \end{columns}
+
+\end{frame}
+\end{document}

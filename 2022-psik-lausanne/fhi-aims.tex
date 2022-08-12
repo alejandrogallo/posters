@@ -1,0 +1,33 @@
+% vim:ft=tex nospell
+\begin{block}{\large Atomic orbitals - FHI-aims}
+  FHI-aims is an all-electron electronic structure
+  package and employs numerical atomic orbitals (NAOs) for both
+  molecules and periodic systems,
+  interfaced to \texttt{Cc4s} via the CC-aims
+  interface\cite{moerman2022interface}. \\
+
+  Interface requirements:
+  \begin{compactitem}
+  \item localized basis set (GTO, NAO, STO, ...)
+  \item Resolution-of-Identity (RI) scheme for the
+    evaluation of Coulomb integrals
+  \end{compactitem}
+  \smallskip
+
+  Coulomb vertex can be evaluated via:
+  \begin{equation*}\label{local-vertex}
+    \Gamma_{r\eta}^{q}
+    =\sum_{\mu\alpha\gamma}
+    {c^*}_\alpha^q (\bm{k}_q)c_r^\gamma(\bm{k}_r)
+    C_{\gamma\mu}^{\alpha}(\bm{k_q},\bm{k_r})
+    \left[\left(V^{\bm{k_q}-\bm{k_r}}\right)^\frac12\right]_\eta^\mu
+  \end{equation*}
+  with
+  \begin{compactitem}
+  \item the HF/KS-state vectors $c_{q}^{\alpha}$
+  \item the RI-expansion coefficients $C_{\gamma\mu}^{\alpha}$
+  \item the auxiliary Coulomb matrix built from the RI-functions
+    $P_{\mu}(\bm{r})$:
+    $V^{\mu}_{\eta} = \int d\bm{r}\bm{r'} \frac{P_{\eta}(\bm{r}){P^*}^{\mu}(\bm{r'})}{|\bm{r}-\bm{r'}|}$
+  \end{compactitem}
+\end{block}
