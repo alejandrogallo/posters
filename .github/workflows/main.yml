@@ -23,7 +23,39 @@ jobs:
         WITH_SHELL: "nix-shell --pure --run"
       run: ${WITH_SHELL} 'echo hello'
 
-    - name: Make all
+    - name: 2016-dpg
       env:
         WITH_SHELL: "nix-shell --pure --run"
-      run: ${WITH_SHELL} 'make all'
+        POSTER: ./2016-dpg/
+      run: cd ${POSTER} && ${WITH_SHELL} 'make all'
+
+    - name: 2018-menton
+      env:
+        WITH_SHELL: "nix-shell --pure --run"
+        POSTER: ./2018-menton/
+      run: cd ${POSTER} && ${WITH_SHELL} 'make all'
+
+    - name: 2019-mqm-heidelberg
+      env:
+        WITH_SHELL: "nix-shell --pure --run"
+        POSTER: 2019-mqm-heidelberg
+      run: cd ${POSTER} && ${WITH_SHELL} 'make all'
+
+    - name: 2022-psik-lausanne
+      env:
+        WITH_SHELL: "nix-shell --pure --run"
+        POSTER: 2022-psik-lausanne
+      run: cd ${POSTER} && ${WITH_SHELL} 'make all'
+
+    - name: 2022-PRACE-paris
+      env:
+        WITH_SHELL: "nix-shell --pure --run"
+        POSTER: 2022-PRACE-paris
+      run: cd ${POSTER} && ${WITH_SHELL} 'make all'
+
+    - name: group/2022-cecam-lausanne-cc4s
+      env:
+        WITH_SHELL: "nix-shell --pure --run"
+        POSTER: group/2022-cecam-lausanne-cc4s
+      run: cd ${POSTER} && ${WITH_SHELL} 'make all'
+

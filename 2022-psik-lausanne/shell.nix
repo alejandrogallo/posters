@@ -3,12 +3,21 @@
 pkgs.mkShell rec {
 
   buildInputs = with pkgs; [
+    sbcl
+    tectonic
+    texlive.combined.scheme-medium
+    imagemagick
+    gnuplot
+    graphviz
     python3
     python3Packages.matplotlib
     python3Packages.pyyaml
-    asymptote
-    gnuplot
+    python3Packages.numpy
+
+    gnumake
+    coreutils-full
     inkscape
+    asymptote
   ];
 
   shellHook = ''
